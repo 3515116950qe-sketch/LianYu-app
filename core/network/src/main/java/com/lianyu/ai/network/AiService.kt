@@ -1355,7 +1355,9 @@ $chatText
         val (startIdx, keys) = selectApiKey(config)
         if (keys.isEmpty() && config.provider == ApiProvider.PARTNER) {
             SecureLog.d("AiService", "PARTNER keys empty, fetching from RemoteKeyProvider...")
-            val remoteKeys = com.lianyu.ai.common.RemoteKeyProvider.fetchKeysAsync(appContext, forceRefresh = false)
+            // 把原来这行注释掉：
+// val remoteKeys = com.lianyu.ai.common.RemoteKeyProvider.fetchKeysAsync(appContext, forceRefresh = false)
+val remoteKeys = emptyList<String>() // 直接给个空列表
             if (remoteKeys.isNotEmpty()) {
                 SecureLog.d("AiService", "Fetched ${remoteKeys.size} remote keys for PARTNER send path")
                 return 0 to remoteKeys
